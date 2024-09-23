@@ -1,0 +1,132 @@
+<div class="row mt-5">
+  <div class="col-md-4 offset-md-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="text-center">
+          <h4>Criação de usuário</h4>
+          <p>Entre com os seus dados</p>
+        </div>
+
+        <div
+          *ngIf="mensagemSucesso != ''"
+          class="alert alert-success alert-dismissible fade show"
+          role="alert"
+        >
+          <strong>{{ mensagemSucesso }}</strong>
+          <button
+            (click)="mensagemSucesso = ''"
+            type="button"
+            class="btn-close"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <div
+          *ngIf="mensagemSenhaConfirmacao != ''"
+          class="alert alert-warning alert-dismissible fade show"
+          role="alert"
+        >
+          <strong>{{ mensagemSenhaConfirmacao }}</strong>
+          <button
+            (click)="mensagemSenhaConfirmacao = ''"
+            type="button"
+            class="btn-close"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <div
+          *ngIf="mensagemErro != ''"
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+        >
+          <strong>{{ mensagemErro }}</strong>
+          <button
+            (click)="mensagemErro = ''"
+            type="button"
+            class="btn-close"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label>Nome do usuário:</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Digite aqui"
+              formControlName="nome"
+            />
+            <div
+              class="text-danger"
+              *ngIf="f['nome'].touched && f['nome'].invalid"
+            >
+              Por favor, informe o nome com pelo menos 8 caracteres.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label>Email de acesso:</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Digite aqui"
+              formControlName="email"
+            />
+            <div
+              class="text-danger"
+              *ngIf="f['email'].touched && f['email'].invalid"
+            >
+              Por favor, informe um endereço de email válido.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label>Senha de acesso:</label>
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Digite aqui"
+              formControlName="senha"
+            />
+            <div
+              class="text-danger"
+              *ngIf="f['senha'].touched && f['senha'].invalid"
+            >
+              Por favor, informe a senha com letras maiúsculas, minúsculas,
+              números, símbolos e pelo menos 8 caracteres.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label>Confirme sua senha:</label>
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Digite aqui"
+              formControlName="senhaConfirmacao"
+            />
+            <div
+              class="text-danger"
+              *ngIf="
+                f['senhaConfirmacao'].touched && f['senhaConfirmacao'].invalid
+              "
+            >
+              Por favor, confirme a sua senha.
+            </div>
+          </div>
+
+          <div class="mb-3 d-grid">
+            <input
+              type="submit"
+              class="btn btn-success"
+              value="Realizar Cadastro"
+              [disabled]="form.invalid"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

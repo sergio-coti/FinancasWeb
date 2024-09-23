@@ -1,0 +1,72 @@
+<div class="row mt-5">
+  <div class="col-md-4 offset-md-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="text-center">
+          <img
+            src="https://www.cotiinformatica.com.br/imagens/logo-coti-informatica.svg"
+          />
+          <h4>Autenticação de usuário</h4>
+          <p>Entre com as suas credenciais</p>
+        </div>
+
+        <div
+          *ngIf="mensagemErro != ''"
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+        >
+          <strong>{{ mensagemErro }}</strong>
+          <button
+            (click)="mensagemErro = ''"
+            type="button"
+            class="btn-close"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label>Email de acesso:</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="email"
+              placeholder="Digite aqui"
+            />
+            <div
+              class="text-danger"
+              *ngIf="f['email'].touched && f['email'].invalid"
+            >
+              Por favor, informe um endereço de email válido.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label>Senha de acesso:</label>
+            <input
+              type="password"
+              class="form-control"
+              formControlName="senha"
+              placeholder="Digite aqui"
+            />
+            <div
+              class="text-danger"
+              *ngIf="f['senha'].touched && f['senha'].invalid"
+            >
+              Por favor, informe a senha com pelo menos 8 caracteres.
+            </div>
+          </div>
+
+          <div class="mb-3 d-grid">
+            <input
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="form.invalid"
+              value="Acessar Sistema"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

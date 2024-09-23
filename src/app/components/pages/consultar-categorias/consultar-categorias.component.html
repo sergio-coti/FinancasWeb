@@ -1,0 +1,56 @@
+<div class="container mt-3">
+  <div class="card">
+    <div class="card-body">
+      <h4>Consulta de categorias</h4>
+      <p>Listagem de categorias cadastradas.</p>
+      <hr />
+
+      <div
+        *ngIf="mensagem != ''"
+        class="alert alert-success alert-dismissible fade show"
+        role="alert"
+      >
+        <strong>{{ mensagem }}</strong>
+        <button
+          (click)="mensagem = ''"
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>Nome da categoria</th>
+              <th>Operações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of categorias">
+              <td>{{ c.nome | uppercase }}</td>
+              <td>
+                <button class="btn btn-sm btn-outline-primary me-2"
+                  [routerLink]="['/pages/editar-categorias', c.id]">
+                  Editar
+                </button>
+                <button (click)="onDelete(c.id)" 
+                  class="btn btn-sm btn-outline-danger">
+                  Excluir
+                </button>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2">
+                Quantidade de registros: {{ categorias.length }}
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

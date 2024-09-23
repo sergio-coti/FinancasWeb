@@ -1,0 +1,88 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Controle de finanças</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item" *ngIf="!isAuthenticated">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            routerLink="/pages/autenticar-usuario"
+            >Acessar Sistema</a
+          >
+        </li>
+
+        <li class="nav-item" *ngIf="!isAuthenticated">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            routerLink="/pages/criar-usuario"
+            >Criar Usuário</a
+          >
+        </li>
+
+        <li class="nav-item dropdown" *ngIf="isAuthenticated">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Gerenciar finanças
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" routerLink="/pages/cadastrar-categorias"
+                >Cadastrar Categorias</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/pages/consultar-categorias"
+                >Consultar Categorias</a
+              >
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item" routerLink="/pages/cadastrar-contas"
+                >Cadastrar Contas</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/pages/consultar-contas"
+                >Consultar Contas</a
+              >
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item" *ngIf="isAuthenticated">
+          <div class="mt-2 ms-5">
+            <strong>{{nomeUsuario}}</strong> | {{emailUsuario}}
+          </div>
+        </li>
+
+        <li class="nav-item" *ngIf="isAuthenticated">
+          <div class="mt-1 ms-3">
+            <button class="btn btn-outline-secondary btn-sm" (click)="logout()">
+              Sair do sistema
+            </button>    
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>

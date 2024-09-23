@@ -1,0 +1,83 @@
+<div class="container mt-3">
+  <div class="card">
+    <div class="card-body">
+      <h4>Cadastro de contas</h4>
+      <p>Preencha os campos para incluir uma conta.</p>
+      <hr />
+
+      <div
+        *ngIf="mensagem != ''"
+        class="alert alert-success alert-dismissible fade show"
+        role="alert"
+      >
+        <strong>{{ mensagem }}</strong>
+        <button
+          (click)="mensagem = ''"
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="mt-3">
+          <label>Nome da conta:</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Digite o nome aqui."
+            formControlName="nome"
+          />
+          <div
+            class="text-danger"
+            *ngIf="f['nome'].touched && f['nome'].invalid"
+          >
+            Por favor, informe o nome da conta com pelo menos 8 caracteres.
+          </div>
+        </div>
+        <div class="mt-3">
+          <label>Data da conta:</label>
+          <input type="date" class="form-control" formControlName="data" />
+          <div
+            class="text-danger"
+            *ngIf="f['data'].touched && f['data'].invalid"
+          >
+            Por favor, informe a data da conta.
+          </div>
+        </div>
+        <div class="mt-3">
+          <label>Valor da conta:</label>
+          <input type="text" class="form-control" formControlName="valor" />
+          <div
+            class="text-danger"
+            *ngIf="f['valor'].touched && f['valor'].invalid"
+          >
+            Por favor, informe o valor da conta.
+          </div>
+        </div>
+        <div class="mt-3">
+          <label>Tipo da conta:</label>
+          <select class="form-select" formControlName="tipo">
+            <option value="">Escolha uma opção</option>
+            <option value="1">Conta a receber</option>
+            <option value="2">Conta a pagar</option>
+          </select>
+          <div
+            class="text-danger"
+            *ngIf="f['tipo'].touched && f['tipo'].invalid"
+          >
+            Por favor, selecione o tipo da conta.
+          </div>
+        </div>
+        <div class="mt-3">
+          <input
+            type="submit"
+            class="btn btn-success"
+            value="Realizar Cadastro"
+            [disabled]="form.invalid"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
